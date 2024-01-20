@@ -9,17 +9,15 @@ import statsmodels.api as sm
 import pandas as pd
 
 # %% load data
-dataset = pd.read_csv('Salary_Data.csv')
-x = dataset.drop(columns=['Salary'])
-y = dataset.iloc[:,1].values
+dataset = pd.read_csv("Salary_Data.csv")
+x = dataset.drop(columns=["Salary"])
+y = dataset.iloc[:, 1].values
 
 # %% specify exogeneous and endogeneous variables
 exog, endog = sm.add_constant(x), y
 
 # %% specify the model
-mod = sm.GLM(endog, exog,   
-        family=sm.families.Poisson(
-             link=sm.families.links.log))
+mod = sm.GLM(endog, exog, family=sm.families.Poisson(link=sm.families.links.Log()))
 
 # %% fit the model
 res = mod.fit()
