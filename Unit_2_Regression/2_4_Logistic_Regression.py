@@ -14,8 +14,8 @@ from matplotlib import pyplot as plt
 iris = datasets.load_iris()
 
 # %% prepare the data
-X = iris["data"][:, 3:] # petal width
-y = (iris["target"] == 2).astype(np.int) # 1 if Iris virginica, else 0
+X = iris["data"][:, 3:]  # petal width
+y = (iris["target"] == 2).astype(int)  # 1 if Iris virginica, else 0
 
 # %% define and fit the model
 log_reg = LogisticRegression()
@@ -28,8 +28,5 @@ X_new = np.linspace(0, 3, 1000).reshape(-1, 1)
 y_proba = log_reg.predict_proba(X_new)
 
 # %% plot the probabilities for each class
-plt.plot(X_new, y_proba[:, 1], "g-", 
-    label="Iris virginica")
-plt.plot(X_new, y_proba[:, 0], "b--", 
-         label="Not Iris virginica")
-
+plt.plot(X_new, y_proba[:, 1], "g-", label="Iris virginica")
+plt.plot(X_new, y_proba[:, 0], "b--", label="Not Iris virginica")
